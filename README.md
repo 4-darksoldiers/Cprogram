@@ -1,2 +1,0 @@
-# Cprogram
-genebank_fasta
