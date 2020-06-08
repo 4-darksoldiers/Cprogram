@@ -1,6 +1,6 @@
 //作者：吴玥汀
 /*修改：叶佳晨 2020/06/08
-将wyt_fasta.c拆分成fasta.c和fasta.h两个文件，并对一些源代码进行修改，删除对fp是否为空的判断;
+将wyt_fasta.c拆分成fasta.c和fasta.h两个文件，并对一些源代码进行修改，删除make_fasta中对fp是否为空的判断;
 并为make_fasta函数增加一个参数char *outPutFile，用于从main.c获取输出文件名*/
 //put information into a fasta file
 #include <stdio.h>

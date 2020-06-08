@@ -1,7 +1,7 @@
 //作者：石京成
 /*修改：叶佳晨 2020/06/08
 为get_cds 增加一个参数FILE *fp用于从main.c中获取输入的文件指针
-为get_cds initial_cds进行一定修改，增加参数CDS cds进行传参从而避免使用全局变量*/
+为get_cds和initial_cds进行一定修改，增加参数CDS cds进行传参从而避免使用全局变量*/
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
