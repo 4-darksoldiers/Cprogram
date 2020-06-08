@@ -38,7 +38,7 @@ void get_cds(CDS cds, FILE *fp)
     char c, buf[100];
     char *line[3];
     int i, j = 0;
-    for (; i < 3; i++)
+    for (i=0; i<3; i++)
         line[i] = (char *)malloc(100 * sizeof(char));
     initial_cds(cds);
 

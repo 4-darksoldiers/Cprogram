@@ -5,6 +5,8 @@
 //put information into a fasta file
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
 #include "fasta.h"
 
 //public：
@@ -23,7 +25,7 @@ void make_fasta(CDS cds, char *outPutFile) //make a fasta file containing CDS in
     fputs(" ", fp);         //space
     fputs(cds.gene, fp);
     fputs("\n", fp);
-    while (!isdight(c = cds.location[++i]))
+    while (!isdigit(c = cds.location[++i]))
         ; //skip front like:complement(<
     while (isdigit(c = cds.location[++i]))
     { //get str1
@@ -79,7 +81,7 @@ void make_fasta(CDS cds, char *outPutFile) //make a fasta file containing CDS in
         for (i = num1 - 1, j = 0; i < num2; i++)
         {
             j++;
-            fputs(toupper(cds.sequence[i]), fp);
+            fputc(toupper(cds.sequence[i]), fp);
             if (j == 50) //50 words need change line
             {
                 fputs("\n", fp);
