@@ -22,13 +22,9 @@ int main(int argc, char **argv)
         else
         {
             CDS cds;
-            printf ("1\n");
             get_cds(&cds, fp);
-            printf ("2\n");
             make_fasta(cds, argv[2]);
-            printf ("3\n");
             printf("[FINISHED] Please check the information you want in file %s\n", argv[2]);
-            printf ("4\n");
 	    fclose(fp);
         }
     }
