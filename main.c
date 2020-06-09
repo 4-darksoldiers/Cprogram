@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 {
     if (argc != 3)
     {
-        printf("Please use the following format to run this program:\n\tGenebank2Fasta <genebankfile you have> <fastafile you want>");
+        printf("Please use the following format to run this program:\n\tGenebank2Fasta <genebankfile you have> <fastafile you want>\n");
     }
     else
     {
@@ -27,9 +27,11 @@ int main(int argc, char **argv)
             printf ("2\n");
             make_fasta(cds, argv[2]);
             printf ("3\n");
-            printf("[FINISHED] Please check the information you want in file %s", argv[2]);
+            printf("[FINISHED] Please check the information you want in file %s\n", argv[2]);
             printf ("4\n");
+	    fclose(fp);
         }
     }
+
     return 0;
 }

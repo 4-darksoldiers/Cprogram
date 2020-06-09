@@ -42,7 +42,6 @@ void make_fasta(CDS cds, char *outPutFile) //make a fasta file containing CDS in
         str2[j++] = c;
     }
     str2[j] = '\0';
-    printf("str2:%s\n",str2);
 
     num1 = char2int(str1);
     num2 = char2int(str2);
@@ -91,6 +90,8 @@ void make_fasta(CDS cds, char *outPutFile) //make a fasta file containing CDS in
                 j = 0;
             }
         }
+    fputs("\n",fp);
+    fclose(fp);
     return;
 }
 
