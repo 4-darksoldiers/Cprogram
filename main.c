@@ -23,7 +23,7 @@ int main(int argc, char **argv)
         {
             CDS cds;
             printf ("1\n");
-            get_cds(cds, fp);
+            get_cds(&cds, fp);
             printf ("2\n");
             make_fasta(cds, argv[2]);
             printf ("3\n");

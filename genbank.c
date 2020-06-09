@@ -7,13 +7,13 @@
 #include <stdlib.h>
 #include "genbank.h"
 
-void initial_cds(CDS cds)
+void initial_cds(CDS *cds)
 {
-    cds.version = (char *)malloc(MAX * sizeof(char));
-    cds.location = (char *)malloc(MAX * sizeof(char));
-    cds.gene = (char *)malloc(MAX * sizeof(char));
-    cds.sequence = (char *)malloc(10000 * sizeof(char));
-    cds.iscomplement = 0;
+    cds->version = (char *)malloc(MAX * sizeof(char));
+    cds->location = (char *)malloc(MAX * sizeof(char));
+    cds->gene = (char *)malloc(MAX * sizeof(char));
+    cds->sequence = (char *)malloc(10000 * sizeof(char));
+    cds->iscomplement = 0;
 }
 
 void line_div(char *str, char *line[])
@@ -33,7 +33,7 @@ void line_div(char *str, char *line[])
     }
 }
 
-void get_cds(CDS cds, FILE *fp)
+void get_cds(CDS *cds, FILE *fp)
 {
     char c, buf[100];
     char *line[3];
@@ -45,19 +45,19 @@ void get_cds(CDS cds, FILE *fp)
     fscanf(fp, "%s", buf);
     while (strcmp(buf, "VERSION") != 0) /*提取version，如LT552780.1*/
         fscanf(fp, "%s", buf);
-    fscanf(fp, "%s", cds.version);
+    fscanf(fp, "%s", cds->version);
 
     while (strcmp(buf, "gene") != 0) /*提取location，如complement(<9..1783)*/
         fscanf(fp, "%s", buf);
-    fscanf(fp, "%s", cds.location);
+    fscanf(fp, "%s", cds->location);
 
-    if (strstr(cds.location, "complement")) /*判断是否为互补链*/
-        cds.iscomplement = 1;
+    if (strstr(cds->location, "complement")) /*判断是否为互补链*/
+        cds->iscomplement = 1;
 
     fgets(buf, 100, fp);
     fgets(buf, 100, fp); /*两个fgets分别用于读掉上一行剩下的部分（空格）和换行符*/
     line_div(buf, line); /*提取gene，如ABSGL_05122.1 scaffold 6499*/
-    strcpy(cds.gene, line[1]);
+    strcpy(cds->gene, line[1]);
 
     while (strcmp(buf, "ORIGIN") != 0)
         fscanf(fp, "%s", buf);
@@ -68,7 +68,7 @@ void get_cds(CDS cds, FILE *fp)
         c = fgetc(fp);
         if (c >= 'a' && c <= 'z')
         {
-            cds.sequence[j] = c;
+            cds->sequence[j] = c;
             j++;
         }
     }
