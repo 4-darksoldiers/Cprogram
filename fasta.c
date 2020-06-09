@@ -9,7 +9,7 @@
 #include <string.h>
 #include "fasta.h"
 
-//public：
+//public:
 void make_fasta(CDS cds, char *outPutFile) //make a fasta file containing CDS information
 {
     int char2int(char *num);
@@ -27,24 +27,27 @@ void make_fasta(CDS cds, char *outPutFile) //make a fasta file containing CDS in
     fputs("\n", fp);
     while (!isdigit(c = cds.location[++i]))
         ; //skip front like:complement(<
-    while (isdigit(c = cds.location[++i]))
+    j=0;
+    while (isdigit(c = cds.location[i]))
     { //get str1
-        j = 0;
-        str1[++j] = c;
+        str1[j++] = c;
+	i++;
     }
     str1[j] = '\0';
     i += 2; //skip ..
-    while (isdigit(c = cds.location[++i]))
+    j=0;
+    while (isdigit(c = cds.location[i]))
     {
-        j = 0;
-        str2[++j] = c;
+	i++;
+        str2[j++] = c;
     }
     str2[j] = '\0';
+    printf("str2:%s\n",str2);
 
     num1 = char2int(str1);
     num2 = char2int(str2);
 
-    if (num2 > num1)
+    if (num2 < num1)
     {
         int tmp;
         tmp = num2;
@@ -88,7 +91,7 @@ void make_fasta(CDS cds, char *outPutFile) //make a fasta file containing CDS in
                 j = 0;
             }
         }
-    exit(1);
+    return;
 }
 
 //private:
@@ -99,8 +102,8 @@ int char2int(char *num) //change char to int
     {
         if (!isdigit(num[i]))
             return -1;
-
+    }
         result = atoi(num);
         return result;
-    }
+ 
 }
